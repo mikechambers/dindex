@@ -15,7 +15,7 @@ pip install -r requirements.txt
 To run the script, simply call it, passing in the directory that you want to create an index file for:
 
 ```bash
-python3 dindex.py --input-dir ~/var/www/files/
+python3 dindex.py --input-dir /var/www/files/
 ```
 
 This will create an **index.html** and **style.css** file in the specified folder, which displays and links the contents of that folder.
