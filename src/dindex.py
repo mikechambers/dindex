@@ -188,6 +188,14 @@ if __name__ == "__main__":
         help='The input_director to create the index file for'
     )
 
+    parser.add_argument(
+        '--ignore-list', 
+        nargs='*',  # This means one or more arguments
+        dest="ignore_list",
+        type=str,   # Ensure that the inputs are treated as strings
+        help='List of files to ignore. Use with no arguments to override default list.'
+    )
+
     args = parser.parse_args()
 
     if not args.version and not args.input_dir:
@@ -197,6 +205,9 @@ if __name__ == "__main__":
         print(f"Digest version : {VERSION}")
         print("https://github.com/mikechambers/dispatch")
         sys.exit()
+
+    if args.ignore_list:
+        ignore_list = args.ignore_list
 
     verbose = args.verbose
     input_dir = args.input_dir
