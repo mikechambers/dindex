@@ -206,8 +206,10 @@ if __name__ == "__main__":
         print("https://github.com/mikechambers/dispatch")
         sys.exit()
 
-    if args.ignore_list:
+    if args.ignore_list is not None:
         ignore_list = args.ignore_list
+
+
 
     verbose = args.verbose
     input_dir = args.input_dir
