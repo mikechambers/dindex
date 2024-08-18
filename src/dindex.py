@@ -15,7 +15,7 @@ verbose = False
 input_dir = None
 env = None
 
-ignore_hidden = True
+show_hidden = False
 ignore_list = ["index.html", "style.css"]
 
 def main():
@@ -71,7 +71,7 @@ def parse_input_dir(input_dir):
         if f in ignore_list:
             continue
 
-        if ignore_hidden and is_hidden(f):
+        if not show_hidden and is_hidden(f):
             continue
 
         path = os.path.join(input_dir, f)
@@ -179,6 +179,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        '--show-hidden',
+        dest='show_hidden', 
+        action='store_true', 
+        help='Whether hidden files should be displayed.'
+    )
+
+    parser.add_argument(
         '--input-dir',
         type=str,
         dest="input_dir",
@@ -197,6 +204,7 @@ if __name__ == "__main__":
 
     verbose = args.verbose
     input_dir = args.input_dir
+    show_hidden = args.show_hidden
 
     try:
         main()
