@@ -1,6 +1,6 @@
-# Dindex
+# dindex
 
-Dindex is a simple python3 script that generates HTML directory index files for web servers. It is meant to be used for individual directories, and makes it easy to style and customize the HTML and CSS.
+dindex is a simple python3 script that generates directory index files for web servers. It is meant to be used for individual directories, and makes it easy to style and customize the HTML and CSS.
 
 ## Installation
 
