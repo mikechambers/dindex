@@ -90,11 +90,13 @@ def parse_input_dir(input_dir):
 
     for item in paths:
 
-        if os.path.isdir(item["path"]):
+        path = item["path"]
+        
+        if os.path.isdir(path):
             data["dirs"].append(item)
-        elif os.path.isfile(item["path"]):
+        elif os.path.isfile(path):
 
-            item["size"] = get_file_size_in_kb(item["path"])
+            item["size"] = get_file_size_in_kb(path)
             data["files"].append(item)
         else:
             continue
@@ -102,12 +104,6 @@ def parse_input_dir(input_dir):
     return data
 
 def get_file_size_in_kb(file_path):
-    """
-    Returns the size of the file at the given path in kilobytes (KB).
-    
-    :param file_path: Path to the file
-    :return: Size of the file in KB
-    """
     if not os.path.isfile(file_path):
         raise ValueError(f"The path {file_path} is not a valid file.")
 

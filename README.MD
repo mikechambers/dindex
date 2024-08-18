@@ -30,7 +30,6 @@ python3 dindex.py --help
 
 ## Known Issues
 
-* Only displays files and directories, and not other entries such as symlinks
 * Displayed date is based on locale and timezone where generated
 
 ## Questions, Feature Requests, Feedback
