@@ -25,13 +25,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Digest v{{version}}, https://github.com/mikechambers/digest">
+    <meta name="generator" content="Dindex v{{version}}, https://github.com/mikechambers/dindex">
     <title>Index</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-
 
     <h4>Directories</h4>
     <hr />
@@ -40,6 +39,11 @@
     <h4>Files</h4>
     <hr />
     {{ render_directory_listing(items.files) }}
+
+
+    <div class="footer">
+        <div>Created {{ generated_date.strftime('%-m/%-d/%y %-I:%M:%S %p %Z') }}</div>
+    </div>
 
 </body>
 

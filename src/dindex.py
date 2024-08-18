@@ -44,10 +44,13 @@ def build_index(items, input_dir):
 
     template = env.get_template(INDEX_TEMPLATE)
 
+    generated_date = add_timezone(datetime.datetime.now())
+
     context = {
         "items":items,
         "version":VERSION,
-        "title":"title"
+        "title":"Index",
+        "generated_date": generated_date
     }
 
     output = template.render(context)
@@ -143,8 +146,15 @@ def get_creation_date(path):
     from zoneinfo import ZoneInfo
     # Convert the creation time to a readable format
     creation_date = datetime.datetime.fromtimestamp(creation_time)
+    #system_timezone = datetime.datetime.now().astimezone().tzinfo
+    #localized_creation_date = creation_date.replace(tzinfo=system_timezone)
+    localized_creation_date = add_timezone(creation_date)
+
+    return localized_creation_date
+
+def add_timezone(date):
     system_timezone = datetime.datetime.now().astimezone().tzinfo
-    localized_creation_date = creation_date.replace(tzinfo=system_timezone)
+    localized_creation_date = date.replace(tzinfo=system_timezone)
 
     return localized_creation_date
 

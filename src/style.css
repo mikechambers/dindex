@@ -64,6 +64,10 @@ body {
     }
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1px; /* Adjust the value as needed */
+}
+
  h1 {
     font-size: 2.5em;
     line-height: calc(1ex / 0.42);
@@ -73,32 +77,26 @@ body {
  h2 {
     font-size: 2em;
     line-height: calc(1ex / 0.42);
-    
 }
 
  h3 {
     font-size: 1.75em;
     line-height: calc(1ex / 0.38);
-   
 }
 
  h4 {
     font-size: 1.5em;
     line-height: calc(1ex / 0.37);
-   
 }
 
 h5 {
     font-size: 0.9em;
- 
     font-style: italic;
 }
 
 h6 {
     font-size: 0.9em;
     margin: calc(1ex / 0.8) 0;
-
-    /*margin-bottom: 20px;*/
 }
 
 p {
@@ -169,6 +167,15 @@ a:hover {
 
 a:visited {
     color: var(--color-link-secondary);
+}
+
+.footer, .header {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    font-size: smaller;
+    gap: 10px;
 }
 
 
