@@ -1,0 +1,174 @@
+:root {
+    --scroll-percentage: 0%;
+    --max-width:800px;
+
+    --color-background : white;
+    /*--color-font: #333333;
+    --color-font: rgb(27, 27, 27);
+    */
+
+
+    /* https://www.smashingmagazine.com/2020/07/css-techniques-legibility/ */
+    --red: 255;
+    --green: 255;
+    --blue: 255;
+
+    --aa-brightness: calc((
+        (var(--red) * 299) +
+        (var(--green) * 587) +
+        (var(--blue) * 114)
+    ) / 1000);
+
+    --aa-brightness: calc((
+        (var(--red) * 299) +
+        (var(--green) * 587) +
+        (var(--blue) * 114)
+    ) / 1000);
+
+    --color-background : rgb(var(--red), var(--green), var(--blue));
+
+    --aa-color: calc((var(--aa-brightness) - 128) * -1000);
+    background: var(--color-background);
+    --color-font: rgb(var(--aa-color), var(--aa-color), var(--aa-color));
+
+    --color-link: rgb(65, 110, 210);
+    --color-link-secondary: #AAAAAA;
+}
+
+
+
+body {
+    font-family: -apple-system, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 29px;
+
+    /*line-height: 1.6;*/
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 20px;
+    text-rendering: optimizeLegibility;
+    color: var(--color-font);
+}
+
+@media (max-width: 390px) {
+    :root {
+        --max-width:360px;
+    }
+
+    body {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 15px;
+        width: 90%;
+        background-color: var(--color-background);
+    }
+}
+
+ h1 {
+    font-size: 2.5em;
+    line-height: calc(1ex / 0.42);
+
+}
+
+ h2 {
+    font-size: 2em;
+    line-height: calc(1ex / 0.42);
+    
+}
+
+ h3 {
+    font-size: 1.75em;
+    line-height: calc(1ex / 0.38);
+   
+}
+
+ h4 {
+    font-size: 1.5em;
+    line-height: calc(1ex / 0.37);
+   
+}
+
+h5 {
+    font-size: 0.9em;
+ 
+    font-style: italic;
+}
+
+h6 {
+    font-size: 0.9em;
+    margin: calc(1ex / 0.8) 0;
+
+    /*margin-bottom: 20px;*/
+}
+
+p {
+    margin: calc(1ex / 0.32) 0;
+    width: 70ch;
+    max-width: 100%;
+    text-align: justify;
+    hyphens: auto;
+}
+
+p,
+p * {
+    /*https://www.smashingmagazine.com/2020/07/css-techniques-legibility/*/
+    line-height: calc(1ex / 0.32);
+    font-size: 1em;
+}
+
+.caps {
+    text-transform: uppercase;
+}
+
+a {
+    color: var(--color-link);
+}
+
+.list-grid {
+    width: 100%;
+}
+
+.list-row {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 40% 20% 20% 20%;
+}
+
+.list-row:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease, border 1.0s ease;
+}
+
+.list-row div {
+    overflow: hidden;      
+    text-overflow: ellipsis; 
+    white-space: nowrap;    
+}
+.block-link {
+    display: block;
+}
+
+.grid-cell-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.section-list {
+    list-style-type: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    font: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: var(--color-link-secondary);
+}
+
+

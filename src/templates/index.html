@@ -1,0 +1,46 @@
+{% macro render_directory_listing(items) %}
+    <div class="list-grid">
+    {% for item in items %}
+    <a href="{{ item.name }}" class="block-link">
+    <div class="list-row">
+        <div>{{ item.name }}</div>
+
+        <div class="grid-cell-right">
+            {% if item.size is not none %}
+            {{ item.size }}KB
+            {% endif %}
+        </div>
+
+        <div class="grid-cell-right">{{ item.date.strftime('%-m/%-d/%y') }}</div>
+        <div class="grid-cell-right">{{ item.date.strftime('%-I:%M:%S %p %Z') }}</div>
+    </div>
+    </a>
+    {% endfor %}
+    </div>
+{% endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Digest v{{version}}, https://github.com/mikechambers/digest">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+
+    <h4>Directories</h4>
+    <hr />
+    {{ render_directory_listing(items.dirs) }}
+
+    <h4>Files</h4>
+    <hr />
+    {{ render_directory_listing(items.files) }}
+
+</body>
+
+</html>
