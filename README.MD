@@ -2,6 +2,8 @@
 
 dindex is a simple python3 script that generates directory index files for web servers. It is meant to be used for individual directories, and makes it easy to style and customize the HTML and CSS.
 
+Directories and files are listed separately, and are ordered in reverse chronological order based on when the entries were last updated.
+
 ## Installation
 
 The script requires Python3 and a number of libraries to be installed. You can install the required libraries with:
