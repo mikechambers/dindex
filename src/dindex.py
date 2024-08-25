@@ -6,6 +6,7 @@ from jinja2 import Environment, FileSystemLoader
 import platform
 import shutil
 import ctypes
+from zoneinfo import ZoneInfo
 
 VERSION = "0.85.1"
 INDEX_TEMPLATE = "index.html"
@@ -40,7 +41,7 @@ def main():
     )
 
 
-def build_index(items, input_dir):
+def build_index(items : dict, input_dir : str):
 
     template = env.get_template(INDEX_TEMPLATE)
 
@@ -63,7 +64,7 @@ def build_index(items, input_dir):
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(output)
 
-def parse_input_dir(input_dir):
+def parse_input_dir(input_dir : str) -> dict:
 
     paths = []
     for f in os.listdir(input_dir):
@@ -103,28 +104,28 @@ def parse_input_dir(input_dir):
 
     return data
 
-def get_file_size_in_kb(file_path):
-    if not os.path.isfile(file_path):
-        raise ValueError(f"The path {file_path} is not a valid file.")
+def get_file_size_in_kb(path : str) -> int:
+    if not os.path.isfile(path):
+        raise ValueError(f"The path {path} is not a valid file.")
 
     # Get the file size in bytes
-    file_size_in_bytes = os.path.getsize(file_path)
+    file_size_in_bytes = os.path.getsize(path)
     
     # Convert bytes to kilobytes
     file_size_in_kb = int(file_size_in_bytes / 1024)
     
     return file_size_in_kb
 
-def is_hidden(filepath):
+def is_hidden(path : str) -> bool:
     if platform.system() == 'Windows':
         # Check for hidden attribute on Windows
-        attribute = ctypes.windll.kernel32.GetFileAttributesW(filepath)
+        attribute = ctypes.windll.kernel32.GetFileAttributesW(path)
         return attribute & 2  # FILE_ATTRIBUTE_HIDDEN is 2
     else:
         # Check for leading dot on Unix-like systems (Linux, macOS)
-        return os.path.basename(filepath).startswith('.')
+        return os.path.basename(path).startswith('.')
 
-def get_creation_date(path):
+def get_creation_date(path : str) -> datetime:
 
     # Check the operating system
     if platform.system() == 'Windows':
@@ -139,16 +140,14 @@ def get_creation_date(path):
             # If birth time is not available, fallback to the last metadata change time
             creation_time = stat.st_mtime
 
-    from zoneinfo import ZoneInfo
+
     # Convert the creation time to a readable format
     creation_date = datetime.datetime.fromtimestamp(creation_time)
-    #system_timezone = datetime.datetime.now().astimezone().tzinfo
-    #localized_creation_date = creation_date.replace(tzinfo=system_timezone)
     localized_creation_date = add_timezone(creation_date)
 
     return localized_creation_date
 
-def add_timezone(date):
+def add_timezone(date : datetime.datetime) -> datetime.datetime:
     system_timezone = datetime.datetime.now().astimezone().tzinfo
     localized_creation_date = date.replace(tzinfo=system_timezone)
 
@@ -199,7 +198,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if not args.version and not args.input_dir:
-        parser.error('--input-dir is required unless --version is specified')
+        parser.error('--input-dir or --version is requries')
 
     if args.version:
         print(f"Digest version : {VERSION}")
